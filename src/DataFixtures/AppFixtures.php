@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Choix;
+use App\Entity\Personne;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -13,11 +14,20 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i=0; $i < 25000; $i++) { 
+        for ($i=0; $i < 5000; $i++) { 
             $choix = new Choix();
             $choix->setNom($faker->name);
 
             $manager->persist($choix);
+        }
+
+        for ($i=0; $i < 5000; $i++) { 
+            $personne = new Personne();
+            $personne->setNom($faker->lastname);
+            $personne->setPrenom($faker->firstname);
+
+
+            $manager->persist($personne);
         }
 
         $manager->flush();

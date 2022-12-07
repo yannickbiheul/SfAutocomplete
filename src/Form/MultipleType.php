@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Choix;
 use App\Entity\Multiple;
+use App\Entity\Personne;
 use Symfony\Component\Form\AbstractType;
 use App\Form\MultipleChoixAutocompleteField;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +18,13 @@ class MultipleType extends AbstractType
         $builder
             ->add('nom')
             ->add('choix', MultipleChoixAutocompleteField::class)
+            ->add('choix', EntityType::class, [
+                'class' => Personne::class,
+                'choice_label' => 'nom',
+                'placeholder' => 'Choisissez une personne dans la liste',
+                'autocomplete' => true,
+                'multiple' => true,
+            ])
         ;
     }
 

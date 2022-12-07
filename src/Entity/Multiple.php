@@ -21,9 +21,13 @@ class Multiple
     #[ORM\ManyToMany(targetEntity: Choix::class, inversedBy: 'multiples')]
     private Collection $choix;
 
+    #[ORM\ManyToMany(targetEntity: Personne::class, inversedBy: 'multiples')]
+    private Collection $personne;
+
     public function __construct()
     {
         $this->choix = new ArrayCollection();
+        $this->personne = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,6 +67,30 @@ class Multiple
     public function removeChoix(Choix $choix): self
     {
         $this->choix->removeElement($choix);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personne>
+     */
+    public function getPersonne(): Collection
+    {
+        return $this->personne;
+    }
+
+    public function addPersonne(Personne $personne): self
+    {
+        if (!$this->personne->contains($personne)) {
+            $this->personne->add($personne);
+        }
+
+        return $this;
+    }
+
+    public function removePersonne(Personne $personne): self
+    {
+        $this->personne->removeElement($personne);
 
         return $this;
     }

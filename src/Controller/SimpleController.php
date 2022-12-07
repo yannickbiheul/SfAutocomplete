@@ -34,7 +34,7 @@ class SimpleController extends AbstractController
             return $this->redirectToRoute('app_simple_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('simple/new.html.twig', [
+        return $this->render('simple/new.html.twig', [
             'simple' => $simple,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class SimpleController extends AbstractController
             return $this->redirectToRoute('app_simple_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('simple/edit.html.twig', [
+        return $this->render('simple/edit.html.twig', [
             'simple' => $simple,
             'form' => $form,
         ]);

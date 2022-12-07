@@ -20,6 +20,10 @@ class Simple
     #[ORM\JoinColumn(nullable: false)]
     private ?Choix $choix = null;
 
+    #[ORM\ManyToOne(inversedBy: 'simples')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Personne $personne = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class Simple
     public function setChoix(?Choix $choix): self
     {
         $this->choix = $choix;
+
+        return $this;
+    }
+
+    public function getPersonne(): ?Personne
+    {
+        return $this->personne;
+    }
+
+    public function setPersonne(?Personne $personne): self
+    {
+        $this->personne = $personne;
 
         return $this;
     }
